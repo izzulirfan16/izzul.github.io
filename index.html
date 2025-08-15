@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>izzul irfan</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>izzul irfan</h1>
+        <div class="profile">
+            <div class="profile-image">
+                your photo here
+            </div>
+            <div class="profile-text">
+                <p>undergraduate computer science student passionate about web development, mobile apps, and creative multimedia.</p>
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <span class="btn-close"></span>
+                            <span class="btn-minimize"></span>
+                            <span class="btn-maximize"></span>
+                        </div>
+                        <div class="terminal-title">terminal</div>
+                    </div>
+                    <div class="terminal-body">
+                        <span class="terminal-prompt">$ </span>
+                        <span class="terminal-text" id="terminal-text"></span>
+                        <span class="cursor" id="cursor">|</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="projects">
+        <h2>projects</h2>
+        
+        <div class="project">
+            <div class="project-thumbnail">
+                project image
+            </div>
+            <div class="project-info">
+                <div class="project-title">jannah kitchen demo</div>
+                <div class="project-tech">php, mysql</div>
+                <div class="project-description">restaurant ordering system with menu management, order processing, and admin controls</div>
+                <a href="https://github.com/izzulirfan16/jannah-kitchen-demo" class="project-link" target="_blank">github →</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-thumbnail">
+                app demo
+            </div>
+            <div class="project-info">
+                <div class="project-title">timetable scheduler</div>
+                <div class="project-tech">flutter, dart</div>
+                <div class="project-description">cross-platform mobile app for managing schedules with intuitive ui</div>
+                <a href="https://youtu.be/x5rhUglgmTk" class="project-link" target="_blank">watch demo →</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-thumbnail">
+                creative work
+            </div>
+            <div class="project-info">
+                <div class="project-title">2sto creative portfolio</div>
+                <div class="project-tech">video, graphics, audio</div>
+                <div class="project-description">multimedia showcase including video production, graphic design, and audio work</div>
+                <a href="https://izzulirfan1606.wixsite.com/2sto-portfolio" class="project-link" target="_blank">view portfolio →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills">
+        <h2>skills</h2>
+        
+        <div class="skill-group">
+            <h3>development</h3>
+            <div class="skill-list">php, dart, javascript, html/css, flutter, mysql, web development, mobile apps</div>
+        </div>
+
+        <div class="skill-group">
+            <h3>creative</h3>
+            <div class="skill-list">video production, graphic design, audio engineering, ui/ux design</div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <h2>connect</h2>
+        <div class="contact-links">
+            <a href="https://github.com/izzulirfan16" class="contact-link" target="_blank">github</a>
+            <a href="mailto:your.email@example.com" class="contact-link">email</a>
+            <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">linkedin</a>
+        </div>
+    </section>
+
+    <script>
+        // Terminal typing animation
+        const terminalText = document.getElementById('terminal-text');
+        const cursor = document.getElementById('cursor');
+        
+        const commands = [
+            'whoami',
+            'ls projects/',
+            'cat about.txt',
+            'npm start',
+            'git status',
+            'flutter run'
+        ];
+        
+        let currentCommand = 0;
+        let currentChar = 0;
+        let isDeleting = false;
+        
+        function typeWriter() {
+            const command = commands[currentCommand];
+            
+            if (isDeleting) {
+                terminalText.textContent = command.substring(0, currentChar - 1);
+                currentChar--;
+            } else {
+                terminalText.textContent = command.substring(0, currentChar + 1);
+                currentChar++;
+            }
+            
+            let typeSpeed = 100;
+            
+            if (isDeleting) {
+                typeSpeed = 50;
+            }
+            
+            if (!isDeleting && currentChar === command.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && currentChar === 0) {
+                isDeleting = false;
+                currentCommand = (currentCommand + 1) % commands.length;
+            }
+            
+            setTimeout(typeWriter, typeSpeed);
+        }
+        
+        // Start the animation
+        setTimeout(typeWriter, 1000);
+        
+        // Cursor blinking
+        setInterval(() => {
+            cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+        }, 500);
+    </script>
+</body>
+</html>
